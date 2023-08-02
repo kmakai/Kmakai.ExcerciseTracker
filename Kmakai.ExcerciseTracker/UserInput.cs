@@ -56,4 +56,31 @@ public class UserInput
         }
 
     }
+
+    internal static int GetChoice()
+    {
+        var choice = AnsiConsole.Prompt(
+                     new SelectionPrompt<string>()
+                     .Title("Select an option")
+                     .PageSize(10)
+                     .AddChoices(new[]
+                     {
+                         "1. Add an exercise" ,
+                         "2. Update an exercise",
+                         "3. Delete an exercise",
+                         "4. View all exercises",
+                         "0. Exit"
+                     }));
+
+        return choice switch
+        {
+            "1. Add an exercise" => 1,
+            "2. Update an exercise" => 2,
+            "3. Delete an exercise" => 3,
+            "4. View all exercises" => 4,
+            "0. Exit" => 0,
+
+        };
+    }
 }
+

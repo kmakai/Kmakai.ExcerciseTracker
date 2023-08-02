@@ -6,15 +6,17 @@ using Kmakai.ExerciseTracker.Controllers;
 using Kmakai.ExerciseTracker.Repositories;
 using Kmakai.ExerciseTracker.Services;
 using Microsoft.Extensions.Logging;
+using Kmakai.ExerciseTracker;
 
 var connectionString = "Server=.;Database=ExerciseTracker;TrustServerCertificate=true;Trusted_Connection=True";
 IHost host = Host.CreateDefaultBuilder()
     .ConfigureServices((services) =>
     {
-        services.AddDbContext<ExerciseContext>( options => options.UseSqlServer(connectionString));
-        services.AddTransient<IExerciseRepository, ExerciseRepository>();
-        services.AddTransient<IExerciseService, ExerciseService>();
-        services.AddTransient<ExerciseController>();
+        services.AddDbContext<ExerciseContext>(options => options.UseSqlServer(connectionString));
+        services.AddSingleton<IExerciseRepository, ExerciseRepository>();
+        services.AddSingleton<IExerciseService, ExerciseService>();
+        services.AddSingleton<IExerciseController, ExerciseController>();
+        services.AddSingleton<Tracker>();
     }).ConfigureLogging(logging =>
     {
         logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
@@ -23,5 +25,5 @@ IHost host = Host.CreateDefaultBuilder()
 
 var services = host.Services;
 
-var exerciseController = services.GetRequiredService<ExerciseController>();
-exerciseController.UpdateExercise();
+var tracker = services.GetRequiredService<Tracker>();
+tracker.Run();

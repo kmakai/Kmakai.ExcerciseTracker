@@ -1,6 +1,4 @@
-﻿
-
-using Kmakai.ExerciseTracker.Models;
+﻿using Kmakai.ExerciseTracker.Models;
 
 namespace Kmakai.ExerciseTracker.Repositories;
 
