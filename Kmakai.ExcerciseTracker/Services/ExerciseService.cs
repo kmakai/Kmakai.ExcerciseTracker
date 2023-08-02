@@ -32,6 +32,7 @@ public class ExerciseService : IExerciseService
     public async Task<Exercise> UpdateAsync(Exercise entity)
     {
         return await ExerciseRepository.UpdateAsync(entity);
+       
     }
 
     public async Task<Exercise> DeleteAsync(int id)
@@ -39,18 +40,4 @@ public class ExerciseService : IExerciseService
         return await ExerciseRepository.DeleteAsync(id);
     }
 
-    public Exercise Get(int id)
-    {
-        return ExerciseRepository.Get(id);
-    }
-
-    public IEnumerable<Exercise> GetAll()
-    {
-        return ExerciseRepository.GetAll();
-    }
-
-    public Exercise Add(Exercise entity)
-    {
-        return ExerciseRepository.Add(entity);
-    }
 }

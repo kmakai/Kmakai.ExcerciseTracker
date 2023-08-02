@@ -18,65 +18,65 @@ public class ExerciseRepository:IRepository<Exercise>, IExerciseRepository
 
     public async Task<Exercise> GetAsync(int id)
     {
-        return await Context.exercises.FindAsync(id) ?? new Exercise();
+        return await Context.Exercises.FindAsync(id) ?? new Exercise();
     }
 
     public async Task<IEnumerable<Exercise>> GetAllAsync()
     {
-        return await Context.exercises.ToListAsync();
+        return await Context.Exercises.ToListAsync();
     }
 
     public async Task<Exercise> AddAsync(Exercise entity)
     {
-        Context.exercises.Add(entity);
+        Context.Exercises.Add(entity);
         await Context.SaveChangesAsync();
         return entity;
     }
 
     public async Task<Exercise> UpdateAsync(Exercise entity)
     {
-        Context.exercises.Update(entity);
+        Context.Exercises.Update(entity);
         await Context.SaveChangesAsync();
         return entity;
     }
 
     public async Task<Exercise> DeleteAsync(int id)
     {
-        var entity = await Context.exercises.FindAsync(id);
-        Context.exercises.Remove(entity);
+        var entity = await Context.Exercises.FindAsync(id);
+        Context.Exercises.Remove(entity!);
         await Context.SaveChangesAsync();
-        return entity;
+        return entity!;
     }
 
     public Exercise Get(int id)
     {
-        return Context.exercises.Find(id) ?? new Exercise();
+        return Context.Exercises.Find(id) ?? new Exercise();
     }
 
     public IEnumerable<Exercise> GetAll()
     {
-        return Context.exercises.ToList();
+        return Context.Exercises.ToList();
     }
 
     public Exercise Add(Exercise entity)
     {
-        Context.exercises.Add(entity);
+        Context.Exercises.Add(entity);
         Context.SaveChanges();
         return entity;
     }
 
     public Exercise Update(Exercise entity)
     {
-        Context.exercises.Update(entity);
+        Context.Exercises.Update(entity);
         Context.SaveChanges();
         return entity;
     }
 
     public Exercise Delete(int id)
     {
-        var entity = Context.exercises.Find(id);
-        Context.exercises.Remove(entity);
+        var entity = Context.Exercises.Find(id);
+        Context.Exercises.Remove(entity!);
         Context.SaveChanges();
-        return entity;
+        return entity!;
     }       
 }

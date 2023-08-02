@@ -11,6 +11,6 @@ public class ExerciseContext: DbContext
     {
     }
 
-    public DbSet<Exercise> exercises { get; set; } = null!;
+    public DbSet<Exercise> Exercises { get; set; } = null!;
 
 }
